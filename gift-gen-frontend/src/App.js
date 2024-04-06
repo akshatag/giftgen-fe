@@ -25,7 +25,7 @@ function App() {
       const uniqueTimestamp = new Date().getTime();
       const newImageUrl = `${data.imageUrl}?t=${uniqueTimestamp}`;
       setImageSrc(newImageUrl); // Update image source with the new URL
-      console.log("Image generated successfully");
+      console.log("Image generated successfully", newImageUrl);
     } else {
       console.error('Failed to generate image');
     }
