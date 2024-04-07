@@ -65,7 +65,7 @@ const ProductSelection = () => {
 
   // Image style unchanged
   const imageStyle = {
-    width: '200px',
+    width: '300px',
     height: 'auto',
     transition: 'transform 0.3s ease',
   };
@@ -75,6 +75,8 @@ const ProductSelection = () => {
     textAlign: 'center',
     color: '#333',
     marginTop: '0.5rem',
+    fontWeight: 'bold',
+    fontSize: '1rem'
   };
 
   // Back button moved to the left and modernized
@@ -98,7 +100,6 @@ const ProductSelection = () => {
     <div style={containerStyle}>
      <button onClick={handleBack} style={backButtonStyle}>Back</button>
 
-      <h1 style={titleStyle}>Choose your product</h1>
       <div>
         <button onClick={() => handleProductClick('mug')} style={buttonStyle}>
           <img src={`${process.env.PUBLIC_URL}/mug.webp`} alt="Mug" style={imageStyle} />

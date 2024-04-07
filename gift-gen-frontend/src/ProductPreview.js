@@ -67,6 +67,7 @@ function ProductPreview() {
     cursor: 'pointer',
     boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
     transition: 'background-color 0.3s ease',
+    fontWeight: 'bold',
   };
 
   const containerStyle = {
@@ -85,7 +86,6 @@ function ProductPreview() {
   return (
     <div style={containerStyle}>
       <button onClick={() => navigate(-1)} style={backButtonStyle}>Back</button>
-      <h1 style={titleStyle}>Product Preview</h1>
       {images && <ImageCarousel images={images} />}
       <div style={{ position: 'fixed', bottom: 20, left: '50%', transform: 'translateX(-50%)' }}>
         <button

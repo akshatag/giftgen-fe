@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import ProductPreview from './ProductPreview'
 import ProductSelection from './ProductSelection'
+import Tracker from './Tracker';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -143,12 +144,14 @@ function RouterWrappedApp() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/productpreview" element={<ProductPreview/>} />
-        <Route path="/productselection" element={<ProductSelection/>} />
+        <Route path="/" element={<><Tracker currentStep={0} /><App /></>} />
+        <Route path="/productselection" element={<><Tracker currentStep={1} /><ProductSelection/></>} />
+        <Route path="/productpreview" element={<><Tracker currentStep={2} /><ProductPreview/></>} />
+        {/* Add a route for the payment page and update the currentStep accordingly */}
       </Routes>
     </BrowserRouter>
   );
 }
+
 
 export default RouterWrappedApp;

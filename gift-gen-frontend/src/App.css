@@ -75,7 +75,7 @@ h1 {
 }
 
 main {
-  padding-top: 60px; /* Space for fixed header */
+  padding-top: 10px; /* Space for fixed header */
 }
 .image-preview img {
   max-height: 500px;
@@ -107,8 +107,7 @@ textarea::placeholder {
 }
 
 .button-group button,
-.generate-button,
-.confirm-button {
+.generate-button{
   padding: 10px 20px;
   margin-right: 10px;
   border: none;
@@ -179,3 +178,24 @@ textarea::placeholder {
     margin-top: 10px; /* Space from the generate button */
   }
 }
+
+/* App.css */
+.tracker-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0; /* Reduced top and bottom margin */
+}
+
+.tracker-step {
+  padding: 10px;
+  margin-right: 10px;
+  border-bottom: 4px solid transparent; /* Default non-active state */
+  font-weight: normal;
+}
+
+.tracker-step.active {
+  border-bottom: 4px solid blue; /* Active state */
+  font-weight: bold;
+}
+
+
