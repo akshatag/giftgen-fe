@@ -1,38 +1,125 @@
 .App {
+  font-family: 'Arial', sans-serif;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  overflow-x: hidden;
 }
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 1rem;
   color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  margin: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+main {
+  padding-top: 60px; /* Space for fixed header */
+}
+.image-preview img {
+  max-height: 500px;
+  margin: 20px auto;
+  border-radius: 10px; /* If you don't want rounded corners, set this to 0 */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-loading {
+  opacity: 0.5;
+}
+
+.prompt-section {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s ease;
+}
+
+textarea::placeholder {
+  color: #888;
+}
+
+.button-group button,
+.generate-button,
+.confirm-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #008CBA;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.button-group button:hover,
+.generate-button:hover,
+.confirm-button:hover {
+  background-color: #005f73;
+}
+
+.button-disabled {
+  background-color: #ccc;
+  cursor: default;
+}
+
+.generate-button {
+  display: block;
+  margin: 20px auto;
+}
+
+.confirm-container {
+  display: flex;
+  justify-content: space-between; /* This will place the confirm button to the right */
+  align-items: center;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.confirm-button {
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.confirm-button:hover {
+  background-color: #45a049; /* Darker shade of green for hover effect */
+}
+
+@media (max-width: 768px) {
+  textarea {
+    padding: 15px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .button-group button,
+  .generate-button,
+  .confirm-button {
+    padding: 15px 30px;
+  }
+
+  .confirm-container {
+    flex-direction: column; /* Stack buttons on smaller screens */
+  }
+
+  .confirm-button {
+    width: 100%; /* Full width on smaller screens */
+    margin-top: 10px; /* Space from the generate button */
   }
 }
