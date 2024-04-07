@@ -27,7 +27,7 @@ function App() {
   };
  
   const [imagePreview, setImagePreview] = useState(''); // State to hold the preset image for preview
-  const [generatedImage, setGeneratedImage] = useState({ url: '', prompt: '' }); // Updated state
+  const [generatedImage, setGeneratedImage] = useState({ url: '', prompt: '' , printifyImg: ''}); // Updated state
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
 
   const navigate = useNavigate();
@@ -48,7 +48,10 @@ function App() {
   
     if (response.ok) {
       const data = await response.json();
-      setGeneratedImage({ url: data[0].url, prompt: prompt });
+      let imgURL = data[0].url;
+      const printifyImg = await uploadImage(imgURL)
+      setGeneratedImage({ url:imgURL, prompt: prompt, printifyImg: printifyImg });
+      setIsGeneratingImage(false); // Set to false only if request fails
     } else {
       console.error('Failed to generate image');
       setIsGeneratingImage(false); // Set to false only if request fails
@@ -61,23 +64,31 @@ const setPresetPrompt = (presetKey) => {
   setPrompt(presets[presetKey]);
   };
 
-  const confirmImage = async () => {
+  const uploadImage = async (imgURL) => {
     const response = await fetch(BACKEND_URL + "/uploadImage", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ url: generatedImage.url }),
+      body: JSON.stringify({ url: imgURL}),
     });
 
     if (response.ok) {
-      const image = await response.json();
-      // Handle successful image upload here
-      console.log("Image successfully uploaded.");
-      navigate('/productselection', { state: { image } });
+      const printifyImage = await response.json(); 
+      return printifyImage;
 
     } else {
       console.error('Failed to upload image');
+    }
+  };
+
+  const confirmImage = () => {
+    const printifyImg = generatedImage.printifyImg
+    if (printifyImg){
+      navigate('/productselection', { state: { printifyImg } });
+    }
+    else{
+      console.log("Unexpected error. No Printify Img", printifyImg)
     }
   };
 

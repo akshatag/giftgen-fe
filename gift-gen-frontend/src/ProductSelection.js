@@ -6,7 +6,9 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const ProductSelection = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { image } = location.state || {};
+  const { printifyImg } = location.state || {};
+
+  console.log("Product Selection Image is", printifyImg);
 
   const handleProductClick = async (selectedItemType) => {
     const createEndpoint = selectedItemType === "mug" ? "/createMug" : "/createPuzzle";
@@ -15,7 +17,7 @@ const ProductSelection = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ image: image }),
+      body: JSON.stringify({ image: printifyImg }),
     });
     if (createResponse.ok) {
       console.log(`Success creating ${selectedItemType}`);
