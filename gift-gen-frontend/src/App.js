@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import ProductPreview from './ProductPreview'
 import ProductSelection from './ProductSelection'
 
-const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   // Single state hook for the prompt
@@ -120,6 +120,8 @@ const setPresetPrompt = (presetKey) => {
             className={`generate-button ${isGeneratingImage ? 'button-disabled' : ''}`}
           >
             {isGeneratingImage ? "Generating..." : "Generate Image"}
+            {isGeneratingImage && <div className="spinner"></div>}
+
           </button>
           {generatedImage.url && !isGeneratingImage && (
             <button

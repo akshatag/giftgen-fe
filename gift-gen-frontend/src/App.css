@@ -1,3 +1,59 @@
+/* Add these to both App.css and index.css */
+:root {
+  --primary-color: #007bff; /* Blue */
+  --accent-color: #ffc107; /* Yellow */
+  --text-color: #333; /* Dark grey */
+  --background-color: #f8f9fa; /* Light grey */
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: darken(var(--primary-color), 10%);
+}
+
+.button-accent {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.button-accent:hover {
+  background-color: darken(var(--accent-color), 10%);
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid var(--primary-color);
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 .App {
   font-family: 'Arial', sans-serif;
   text-align: center;

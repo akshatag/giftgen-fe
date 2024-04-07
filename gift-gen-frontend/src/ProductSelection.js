@@ -1,7 +1,7 @@
 import React from 'react';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const ProductSelection = () => {
   const navigate = useNavigate();
@@ -39,66 +39,69 @@ const ProductSelection = () => {
   const handleBack = () => {
     navigate(-1); // This will take the user back to the previous page in the history stack
   };
-
-   // Add some styling to make the UI more aesthetically pleasing
-   const containerStyle = {
+ // Updated styling
+ const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundColor: '#f7f7f7', // A light grey background for contrast
-    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', // A more modern font
+    backgroundColor: '#fff', // A clean white background
+    fontFamily: 'Arial, sans-serif',
   };
 
   const titleStyle = {
-    margin: '0',
-    color: '#333', // Dark grey color for the text
-    paddingBottom: '2rem', // Add some space below the title
+    color: '#333',
+    paddingBottom: '2rem',
   };
 
+  // Button style unchanged
   const buttonStyle = {
     border: 'none',
     background: 'none',
     cursor: 'pointer',
-    outline: 'none', // Remove outline on focus for a cleaner look
+    outline: 'none',
   };
 
+  // Image style unchanged
   const imageStyle = {
     width: '200px',
     height: 'auto',
-    transition: 'transform 0.3s ease', // Smooth transition for the hover effect
+    transition: 'transform 0.3s ease',
   };
 
+  // Label style unchanged
   const labelStyle = {
     textAlign: 'center',
-    color: '#333', // Match the text color with the title
-    marginTop: '0.5rem', // Space between image and label
+    color: '#333',
+    marginTop: '0.5rem',
   };
 
+  // Back button moved to the left and modernized
   const backButtonStyle = {
-    position: 'absolute',
+    position: 'fixed', // Use fixed to position it relative to the viewport
     top: '20px',
     left: '20px',
     fontSize: '1rem',
+    fontWeight: 'bold', // Make the font bold
     color: '#333',
-    backgroundColor: 'transparent',
-    border: '1px solid #ccc', // A subtle border
-    borderRadius: '5px', // Rounded corners
+    backgroundColor: '#f7f7f7', // A light grey that matches the button hover
+    border: 'none', // Removing border for a modern flat design
+    borderRadius: '5px',
     padding: '0.5rem 1rem',
     cursor: 'pointer',
-    textDecoration: 'none', // Remove underline from text
+    boxShadow: '0 2px 5px rgba(0,0,0,0.2)', // A subtle shadow for depth
+    transition: 'background-color 0.3s ease', // Transition for a smooth color change on hover
   };
 
   return (
     <div style={containerStyle}>
-      <button onClick={handleBack} style={backButtonStyle}>
-        Back
-      </button>
+     <button onClick={handleBack} style={backButtonStyle}>Back</button>
+
       <h1 style={titleStyle}>Choose your product</h1>
       <div>
         <button onClick={() => handleProductClick('mug')} style={buttonStyle}>
-          <img src={`${process.env.PUBLIC_URL}/mug.jpg`} alt="Mug" style={imageStyle} />
+          <img src={`${process.env.PUBLIC_URL}/mug.webp`} alt="Mug" style={imageStyle} />
           <p style={labelStyle}>Mug</p>
         </button>
         <button onClick={() => handleProductClick('puzzle')} style={buttonStyle}>
@@ -107,14 +110,17 @@ const ProductSelection = () => {
         </button>
       </div>
 
-      {/* Style to be applied on hover */}
       <style>{`
+        button:hover {
+          background-color: #f7f7f7; // Light grey background on hover for the buttons
+          transition: background-color 0.3s ease;
+        }
         button:hover img {
-          transform: scale(1.05); // Slightly enlarge the image
-          opacity: 0.8; // Slightly fade the image to give focus
+          transform: scale(1.05);
+          opacity: 0.8;
         }
         button:hover p {
-          color: #007bff; // Highlight the text with a blue color
+          color: #007bff;
         }
       `}</style>
     </div>
